@@ -1,4 +1,43 @@
+const movieDatabase = []
+
+let movieId = 1
 module.exports = {
+    addMovie: (req, res) => {
+        const {movieName, charName} = req.query
+        const newObj = {
+            movieId: movieId,
+            movieName: movieName,
+            charName: charName,
+        };
+        movieDatabase.push(newObj)
+        movieId++;
+        res.status(200).send(movieDatabase);
+    },
+    getMovie: (req, res) => {
+        res.status(200).send(movieDatabase);
+    },
+    editMovie: (req, res) => {
+        const {id} = req.params;
+        const {newMovieName, newCharName} = req.query;
+        const movieIndex = movieDatabase.findIndex((movie) => movie.movieId === +id);
+        if (movieIndex === -1){
+            res.status(400).send("Movie not found");
+            return;
+        }
+        movieDatabase[movieIndex].movieName = newMovieName;
+        movieDatabase[movieIndex].charName = newCharName;
+        res.status(200).send(movieDatabase)
+    },
+    deleteMovie: (req, res) => {
+        const {id} = req.params;
+        const movieIndex = movieDatabase.findIndex((movie) => movie.movieId === +id);
+        if (movieIndex === -1){
+            res.status(400).send("Movie not found");
+            return;
+        }
+        movieDatabase.splice(movieIndex,1);
+        res.status(200).send(movieDatabase)
+    },
 
     getCompliment: (req, res) => {
         const compliments = ["Gee, you're a smart cookie!", "Cool shirt!", "Your Javascript skills are stellar."];

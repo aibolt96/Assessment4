@@ -5,6 +5,42 @@
   </head>
   <body class="container">
     <section>
+      <h2>Movie List</h2>
+      <form id="add-movie">
+        <label for="newMovie">Movie Name:</label>
+        <input type="text" id="newMovie" placeholder="Enter Movie Name">
+        <br>
+        <br>
+        <label for="newChar">Character Name:</label>
+        <input type="text" id="newChar" placeholder="Enter Character Name">
+        <br>
+        <br>
+        <button id="addMovieButton">Submit</button>
+      </form>
+    </section>
+
+    <section>
+      <h3>Edit or Replace Movie</h3>
+      <form id="edit-movie">
+        <label for="movieId">Movie ID</label>
+        <input type="text" id="movieId" placeholder="Insert Movie ID">
+        <br>
+        <br>
+        <label for="updateMovie">Change Movie Name:</label>
+        <input type="text" id="updateMovie" placeholder="New Movie Name">
+        <br>
+        <br>
+        <label for="updateChar">Change Character Name:</label>
+        <input type="text" id="updateChar" placeholder="New Character Name">
+        <br>
+        <br>
+        <button id="editMovieButton">Submit</button>
+      </form>
+    </section>
+    <br>
+    <section id="movieInfo"></section>
+    <br>
+    <section>
       <h3>Ask the Magic 8 Ball</h3>
       <input type="text" id="magic-question" placeholder="ask a yes or no question.">
       <p id = "magic-answer-display"></p>
