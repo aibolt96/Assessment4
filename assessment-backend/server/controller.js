@@ -1,7 +1,38 @@
 const movieDatabase = []
+let todoDatabase= []
 
 let movieId = 1
+let todoId = 1
 module.exports = {
+    addTodo: (req, res) => {
+        const {todoName} = req.query
+        const newObj = {
+            todoId: todoId,
+            todoName: todoName,
+        };
+        todoDatabase.push(newObj)
+        todoId++
+        res.status(200).send(todoDatabase);
+    },
+    getTodo: (req,res) => {
+        res.status(200).send(todoDatabase);
+    },
+    editTodo: (req,res) => {
+        const {id} = req.params;
+        const {newTodo} = req.query;
+        const todoIndex = todoDatabase.findIndex((todo) => todo.todoId === +id);
+        if (todoIndex === -1){
+            res.status(400).send("Todo doesnt exist");
+            return;
+        }
+        todoDatabase[todoIndex].todoName = newTodo;
+        res.status(200).send(todoDatabase)
+    },
+    deleteTodo: (req,res) => {
+        todoDatabase = [];
+        res.status(200).send(todoDatabase)
+    },
+
     addMovie: (req, res) => {
         const {movieName, charName} = req.query
         const newObj = {
