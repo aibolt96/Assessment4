@@ -130,7 +130,7 @@ const editMovies = (event) => {
     .catch((err) => console.log(err))
     movieId.value = '';
     updateMovie.value = '';
-    newChar.value = '';
+    updateChar.value = '';
 };
 
 
